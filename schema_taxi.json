@@ -1,0 +1,54 @@
+{
+  "description": "Dynamic taxi labor-supply (continue vs stop) \u2014 LSTM choice model schema",
+  "target_name": "continue_next",
+  "time_gap_threshold_min": 60,
+  "group_key_required": "unit_id",
+  "datetime_cols": {
+    "pickup": "pickup_datetime",
+    "dropoff": "dropoff_datetime"
+  },
+  "zone_cols": {
+    "pu": "PULocationID",
+    "do": "DOLocationID"
+  },
+  "fare_cols": {
+    "fare": "fare_amount",
+    "tip": "tip_amount",
+    "total": "total_amount"
+  },
+  "distance_col": "trip_distance",
+  "duration_col": "trip_time_min",
+  "weather_join_cols": {
+    "datetime": "datetime",
+    "rain_mm": "rain_mm",
+    "temp_c": "temp_c",
+    "wind_mps": "wind_mps"
+  },
+  "traffic_cols": {
+    "city_speed_mph": "city_speed_mph"
+  },
+  "sequence_features": [
+    "revenue_per_hour_t",
+    "fare_total_t",
+    "tip_rate_t",
+    "trip_distance_mi_t",
+    "trip_time_min_t",
+    "idle_time_prev_min",
+    "cumulative_revenue_t",
+    "cumulative_hours_t",
+    "pickups_zone_60m",
+    "hvfhv_pickups_zone_60m",
+    "rain_mm_t",
+    "temp_c_t",
+    "wind_mps_t",
+    "city_speed_mph_t",
+    "hour_sin_t",
+    "hour_cos_t",
+    "dow_sin_t",
+    "dow_cos_t"
+  ],
+  "notes": [
+    "All *_t features are aligned at decision time t = end of current trip.",
+    "Label continue_next refers to whether next pickup occurs within \u03c4 minutes after t."
+  ]
+}
